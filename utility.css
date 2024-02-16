@@ -39,3 +39,34 @@
 .p-1 {
     padding: 10px;
 }
+
+/* Webkit (Safari/Chrome) */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #333; /* Dark background */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #666; /* Darker color */
+    border-radius: 5px;
+  }
+  
+  /* Firefox */
+  /* Note: Firefox only supports scrollbar color properties as of Firefox 64 */
+  /* You might need to use the `!important` declaration to override default styles */
+  /* See: https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar */
+  * {
+    scrollbar-color: #666 #333;
+    scrollbar-width: thin;
+  }
+  
+  /* Internet Explorer */
+  /* Note: Internet Explorer only supports scrollbar color properties via MS-specific syntax */
+  * {
+    scrollbar-base-color: #666; /* Darker color */
+    scrollbar-face-color: #333; /* Dark background */
+  }
+  
