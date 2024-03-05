@@ -39,8 +39,8 @@ const playMusic = (track) => {
     // let audio = new Audio("/Songs/" + track);
     currentSong.src = "/Songs/" + track
     currentSong.play();
-    play.src = "pause.svg"; // Jab ganna play hoga then by default we have to do this
-    document.querySelector(".songinfo").innerHTML = track;
+    play.src = "pause.svg";// Jab ganna play hoga then by default we have to do this
+    document.querySelector(".songinfo").innerHTML = decodeURI(track);
     document.querySelector(".songtime").innerHTML = "00.00 / 00.00"
 }
 
@@ -91,6 +91,16 @@ async function main() {
     currentSong.addEventListener("timeupdate" , () => {
         console.log(currentSong.currentTime , currentSong.duration);
         document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)}/${secondsToMinutesSeconds(currentSong.duration)}`
+        document.querySelector(".circle").style.left = (currentSong.currentTime/currentSong.duration)*100 + "%"; // For the circle to move along with the song
+    })
+
+    // Add an event listener to the seekbar
+    document.querySelector(".seekbar").addEventListener("click" , e => {
+         // console.log(e.target.getBoundingClientRect() , e.offsetX);
+         let percent = (e.offsetX/e.target.getBoundingClientRect().width)*100
+       document.querySelector(".circle").style.left = percent + "%"; // To move the circle according to our convineince in seekbar
+       currentSong.currentTime = ((currentSong.duration)*percent)/100;  // To update the current time of the song when we move the circle in the seekbar
+
     })
 
 }
